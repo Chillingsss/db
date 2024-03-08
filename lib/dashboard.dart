@@ -1,5 +1,7 @@
+import 'package:db/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:db/store.dart';
+import 'package:db/main.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -19,6 +21,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Dashboard'),
         actions: [
           GestureDetector(
             onTap: () {
@@ -38,148 +41,179 @@ class _DashboardState extends State<Dashboard> {
             },
             child: Icon(Icons.shopping_cart),
           ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 500),
-            child: Text(
-              "ANDREWSABEL",
-              style: TextStyle(fontSize: 20),
+          SizedBox(width: 10),
+          Container(
+            width: 70,
+            height: 70,
+            child: IconButton(
+              icon: Icon(Icons.exit_to_app, size: 30),
+              onPressed: () {
+                _logout();
+              },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 600),
-            child: Text("STORE"),
-          ),
-          Row(
-            children: [
-              Column(
-                children: [
-                  Image.asset(
-                    'images/OIP.jpg',
-                    height: 300,
-                    width: 300,
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      saveRecord(
-                        coke,
-                        10,
-                        Image.asset(
-                          'images/coke.jpg',
-                          height: 100,
-                          width: 100,
-                        ),
-                      );
-                    },
-                    child: Image.asset(
-                      'images/coke.jpg',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  Text("Coke"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      saveRecord(
-                        noodles,
-                        30,
-                        Image.asset(
-                          'images/noodles.jpg',
-                          height: 100,
-                          width: 100,
-                        ),
-                      );
-                    },
-                    child: Image.asset(
-                      'images/noodles.jpg',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  Text("Noodles"),
-                ],
-              ),
-              SizedBox(
-                width: 30,
-              ),
-              Column(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      saveRecord(
-                        bulad,
-                        20,
-                        Image.asset(
-                          'images/bulad.jpg',
-                          height: 100,
-                          width: 100,
-                        ),
-                      );
-                    },
-                    child: Image.asset(
-                      'images/bulad.jpg',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  Text("Bulad"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      saveRecord(
-                        shampoo,
-                        40,
-                        Image.asset(
-                          'images/shampoo.png',
-                          height: 100,
-                          width: 100,
-                        ),
-                      );
-                    },
-                    child: Image.asset(
-                      'images/shampoo.png',
-                      height: 100,
-                      width: 100,
-                    ),
-                  ),
-                  Text("Shampoo"),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Store(
-                    listview: createListView(),
-                    total: total,
-                  ),
-                ),
-              );
-            },
-            child: Text("Checkout"),
-          ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 500),
+              child: Text(
+                "ANDREWSABEL",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 600),
+              child: Text("STORE"),
+            ),
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Image.asset(
+                      'images/OIP.jpg',
+                      height: 300,
+                      width: 300,
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        saveRecord(
+                          coke,
+                          10,
+                          Image.asset(
+                            'images/coke.jpg',
+                            height: 100,
+                            width: 100,
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'images/coke.jpg',
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                    Text("Coke"),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        saveRecord(
+                          noodles,
+                          30,
+                          Image.asset(
+                            'images/noodles.jpg',
+                            height: 100,
+                            width: 100,
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'images/noodles.jpg',
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                    Text("Noodles"),
+                  ],
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        saveRecord(
+                          bulad,
+                          20,
+                          Image.asset(
+                            'images/bulad.jpg',
+                            height: 100,
+                            width: 100,
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'images/bulad.jpg',
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                    Text("Bulad"),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        saveRecord(
+                          shampoo,
+                          40,
+                          Image.asset(
+                            'images/shampoo.png',
+                            height: 100,
+                            width: 100,
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'images/shampoo.png',
+                        height: 100,
+                        width: 100,
+                      ),
+                    ),
+                    Text("Shampoo"),
+                  ],
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Store(
+                      listview: createListView(),
+                      total: total,
+                    ),
+                  ),
+                );
+              },
+              child: Text("Checkout"),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -195,19 +229,7 @@ class _DashboardState extends State<Dashboard> {
       _shopList.add(shopCart);
       total += price;
     });
-
-    // computeTotalBalance();
   }
-
-  // void computeTotalBalance() {
-  //   double totalBalance = 0;
-  //   _shopList.forEach(() {
-  //     totalBalance += student.balance;
-  //   });
-  //   setState(() {
-  //     total = totalBalance;
-  //   });
-  // }
 
   Widget createListView() {
     return ListView.builder(
@@ -224,6 +246,14 @@ class _DashboardState extends State<Dashboard> {
           ),
         );
       },
+    );
+  }
+
+  void _logout() {
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => MyApp()),
+      (route) => false,
     );
   }
 }
